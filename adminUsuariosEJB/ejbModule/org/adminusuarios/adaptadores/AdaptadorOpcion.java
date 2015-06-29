@@ -1,0 +1,52 @@
+package org.adminusuarios.adaptadores;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.adminUsuarios.comunes.excepcion.AdaptadorException;
+import org.adminUsuarios.comunes.vo.OpcionVO;
+import org.adminUsuarios.comunes.vo.RolVO;
+import org.adminusuarios.negocio.entidades.Opcion;
+import org.adminusuarios.negocio.entidades.Rol;
+
+public class AdaptadorOpcion extends IAdaptadorOpcion {
+
+	public AdaptadorOpcion(Opcion rol) {
+		this.opcion = rol;
+	}
+
+	public AdaptadorOpcion(OpcionVO rolVO) {
+		this.opcionVO = rolVO;
+	}
+
+	@Override
+	public Opcion getOpcion() throws AdaptadorException {
+		Opcion opcion = null;
+		
+		if (opcionVO == null)
+			return null;
+		
+		opcion = new Opcion();
+		opcion.setNombre(opcionVO.getNombre());
+		opcion.setDescripcion(opcionVO.getDescripcion());
+		opcion.setIdopcion(opcionVO.getIdopcion());
+		return opcion;
+	}
+
+	@Override
+	public OpcionVO getOpcionVO() throws AdaptadorException {
+		OpcionVO opcionVO = null;
+		List<OpcionVO> listaOpciones;
+		
+		if (opcion == null)
+			return null;
+
+		opcionVO = new OpcionVO();
+		opcionVO.setNombre(opcion.getNombre());
+		opcionVO.setDescripcion(opcion.getDescripcion());
+		opcionVO.setIdopcion(opcion.getIdopcion());
+ 
+		return opcionVO;
+	}
+
+}
