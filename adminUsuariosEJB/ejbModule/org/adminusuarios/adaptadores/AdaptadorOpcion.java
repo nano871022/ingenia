@@ -1,13 +1,10 @@
 package org.adminusuarios.adaptadores;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.adminUsuarios.comunes.excepcion.AdaptadorException;
 import org.adminUsuarios.comunes.vo.OpcionVO;
-import org.adminUsuarios.comunes.vo.RolVO;
 import org.adminusuarios.negocio.entidades.Opcion;
-import org.adminusuarios.negocio.entidades.Rol;
 
 public class AdaptadorOpcion extends IAdaptadorOpcion {
 
