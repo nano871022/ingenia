@@ -11,20 +11,35 @@
 	<ui:define name="content">
 Datos de curso
 		<h:form>
-
+			
 			<h:panelGrid columns="2" cellpadding="5">
-
+			
 				<h:outputLabel for="nombre" value="Nombre:" />
-				<h:outputText id="nombre" value="#{AdmRolMB.rolVO.nombre}"
-					label="nombre" />
+				<p:inputText id="nombre" value="#{AdmCursoMB.cursoVO.nombre}"
+					required="true" label="nombre" requiredMessage="Debe indicar el nombre del curso" />
 
 				<h:outputLabel for="descripcion" value="Descripcion:" />
-				<p:inputText id="descripcion" value="#{AdmRolMB.rolVO.descripcion}"
-					required="false" label="descripcion" />
+				<p:inputText id="descripcion" value="#{AdmCursoMB.cursoVO.descripcion}"
+					required="true" label="descripcion" requiredMessage="Debe indicar la descripcion"/>
 
-				<h:outputLabel for="activo" value="Activo:" />
-				<h:selectBooleanCheckbox id="activo" value="true" required="false"
-					label="activo" />
+				
+			<h:outputLabel for="estado" value="Estado:" />
+ 			 <p:selectOneMenu value="#{AdmCursoMB.cursoVO.estado}" required="true" label="estado" requiredMessage="Debe indicar el estado">
+  			  <f:selectItem itemValue="En Creacion" itemLabel="En Creación" />
+   			<f:selectItem itemValue="En Edicion" itemLabel="En Edición" />
+   			<f:selectItem itemValue="Publicado" itemLabel="Publicado" />
+ 			 </p:selectOneMenu>
+ 			 
+ 			 <h:outputLabel for="activo" value="Activo:" />
+ 			 <p:selectOneMenu value="#{AdmCursoMB.cursoVO.activo}" required="true" label="activo" requiredMessage="Debe indicar si esta activo">
+   			<f:selectItem itemValue="1" itemLabel="Si" />
+   			<f:selectItem itemValue="0" itemLabel="No" />
+ 			 </p:selectOneMenu>
+
+
+			<f:facet name="footer">
+				<p:commandButton value="Guardar" action="#{AdmCursoMB.crear}" />
+			</f:facet>
 
 			</h:panelGrid>
 
@@ -50,9 +65,7 @@ Datos de curso
 
 			</p:dataTable>
 
-			<f:facet name="footer">
-				<p:commandButton value="Guardar" action="#{AdmRolMB.guardar}" />
-			</f:facet>
+			
 
 		</h:form>
 

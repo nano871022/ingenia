@@ -5,9 +5,6 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="ingeniaEJBClient.jar" deploy-path="/" handle="module:/resource/ingeniaEJBClient/ingeniaEJBClient">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="ingeniaWEB.war" deploy-path="/" handle="module:/resource/ingeniaWEB/ingeniaWEB">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
@@ -15,11 +12,10 @@
         <dependent-module archiveName="ingeniaJPA.jar" deploy-path="/lib" handle="module:/resource/ingeniaJPA/ingeniaJPA">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="ingeniaSW.war" deploy-path="/" handle="module:/resource/ingeniaSW/ingeniaSW">
-            <dependent-object/>
+        <dependent-module archiveName="ingeniaComunes.jar" deploy-path="/lib" handle="module:/resource/ingeniaComunes/ingeniaComunes">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="ingeniaComunes.jar" deploy-path="/lib" handle="module:/resource/ingeniaComunes/ingeniaComunes">
+        <dependent-module archiveName="ingeniaEJBClient.jar" deploy-path="/lib" handle="module:/resource/ingeniaEJBClient/ingeniaEJBClient">
             <dependency-type>uses</dependency-type>
         </dependent-module>
     </wb-module>

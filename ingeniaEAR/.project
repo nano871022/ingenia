@@ -5,9 +5,9 @@
 	<projects>
 		<project>ingeniaComunes</project>
 		<project>ingeniaEJB</project>
-		<project>ingeniaEJBClient</project>
 		<project>ingeniaJPA</project>
 		<project>ingeniaWEB</project>
+		<project>ingeniaEJBClient</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

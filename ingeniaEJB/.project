@@ -3,6 +3,9 @@
 	<name>ingeniaEJB</name>
 	<comment></comment>
 	<projects>
+		<project>ingeniaComunes</project>
+		<project>ingeniaEJBClient</project>
+		<project>ingeniaJPA</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

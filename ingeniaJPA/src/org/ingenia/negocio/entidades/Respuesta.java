@@ -13,8 +13,8 @@ import javax.persistence.*;
 public class Respuesta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private RespuestaPK id;
+	@Id
+	private int idrespuesta;
 
 	private int orden;
 
@@ -30,12 +30,12 @@ public class Respuesta implements Serializable {
 	public Respuesta() {
 	}
 
-	public RespuestaPK getId() {
-		return this.id;
+	public int getIdrespuesta() {
+		return this.idrespuesta;
 	}
 
-	public void setId(RespuestaPK id) {
-		this.id = id;
+	public void setIdrespuesta(int idrespuesta) {
+		this.idrespuesta = idrespuesta;
 	}
 
 	public int getOrden() {

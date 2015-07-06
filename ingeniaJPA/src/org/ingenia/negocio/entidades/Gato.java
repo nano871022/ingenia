@@ -15,7 +15,6 @@ public class Gato implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idgato;
 
 	private String color;
@@ -23,19 +22,6 @@ public class Gato implements Serializable {
 	private String defensa;
 
 	private String orden;
-
-	//bi-directional many-to-many association to Actividad
-	@ManyToMany
-	@JoinTable(
-		name="gatoactividad"
-		, joinColumns={
-			@JoinColumn(name="idgato")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="idactividad")
-			}
-		)
-	private List<Actividad> actividads;
 
 	//bi-directional many-to-one association to Arma
 	@ManyToOne
@@ -50,6 +36,19 @@ public class Gato implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="tipo_gato_idtipo_gato")
 	private Tipogato tipogato;
+
+	//bi-directional many-to-many association to Actividad
+	@ManyToMany
+	@JoinTable(
+		name="gatoactividad"
+		, joinColumns={
+			@JoinColumn(name="idgato")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="idactividad")
+			}
+		)
+	private List<Actividad> actividads;
 
 	public Gato() {
 	}
@@ -86,14 +85,6 @@ public class Gato implements Serializable {
 		this.orden = orden;
 	}
 
-	public List<Actividad> getActividads() {
-		return this.actividads;
-	}
-
-	public void setActividads(List<Actividad> actividads) {
-		this.actividads = actividads;
-	}
-
 	public Arma getArma() {
 		return this.arma;
 	}
@@ -116,6 +107,14 @@ public class Gato implements Serializable {
 
 	public void setTipogato(Tipogato tipogato) {
 		this.tipogato = tipogato;
+	}
+
+	public List<Actividad> getActividads() {
+		return this.actividads;
+	}
+
+	public void setActividads(List<Actividad> actividads) {
+		this.actividads = actividads;
 	}
 
 }

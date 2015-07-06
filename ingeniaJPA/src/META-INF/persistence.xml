@@ -5,15 +5,16 @@
 	<persistence-unit name="ingeniaJPA">
 		<jta-data-source>jdbc/ingenia</jta-data-source>
 		<class>org.ingenia.negocio.entidades.Actividad</class>
-	 
+		<class>org.ingenia.negocio.entidades.Actividadcurso</class>
+		<class>org.ingenia.negocio.entidades.ActividadcursoPK</class>
 		<class>org.ingenia.negocio.entidades.Actividadusuario</class>
 		<class>org.ingenia.negocio.entidades.ActividadusuarioPK</class>
-		<class>org.ingenia.negocio.entidades.Arma</class>
-		<class>org.ingenia.negocio.entidades.Color</class>
-		<class>org.ingenia.negocio.entidades.Curso</class>
-		<class>org.ingenia.negocio.entidades.CursoPK</class>
-		<class>org.ingenia.negocio.entidades.Estructura</class>
-		 
+		<class>org.ingenia.negocio.entidades.Arma</class>	
+		<class>org.ingenia.negocio.entidades.Color</class>	
+		<class>org.ingenia.negocio.entidades.Curso</class>	
+		<class>org.ingenia.negocio.entidades.Estructura</class>	
+		<class>org.ingenia.negocio.entidades.Estudiantecurso</class>
+		<class>org.ingenia.negocio.entidades.EstudiantecursoPK</class>
 		<class>org.ingenia.negocio.entidades.Gato</class>
 		<class>org.ingenia.negocio.entidades.Juego</class>
 		<class>org.ingenia.negocio.entidades.Mensaje</class>
@@ -21,10 +22,9 @@
 		<class>org.ingenia.negocio.entidades.Opcion</class>
 		<class>org.ingenia.negocio.entidades.Raton</class>
 		<class>org.ingenia.negocio.entidades.Respuesta</class>
-		<class>org.ingenia.negocio.entidades.RespuestaPK</class>
 		<class>org.ingenia.negocio.entidades.Rol</class>
 		<class>org.ingenia.negocio.entidades.Tipogato</class>
-		<class>org.ingenia.negocio.entidades.Usuario</class>
+		<class>org.ingenia.negocio.entidades.Usuario</class>	
 		
 	</persistence-unit>
 </persistence>

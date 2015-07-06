@@ -15,7 +15,6 @@ public class Actividad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idactividad;
 
 	private byte activo;
@@ -30,13 +29,30 @@ public class Actividad implements Serializable {
 
 	private byte publicado;
 
-	@Column(name="url_texto_enseñanza")
-	private String urlTextoEnseñanza;
+	@Column(name="`url_texto_ensenanza`")
+	private String url_texto_ensenanza;
+
+	//bi-directional many-to-many association to Curso
+	@ManyToMany
+	@JoinTable(
+		name="actividadcurso"
+		, joinColumns={
+			@JoinColumn(name="idactividad")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="idcurso")
+			}
+		)
+	private List<Curso> cursos;
 
 	//bi-directional many-to-one association to Juego
 	@ManyToOne
 	@JoinColumn(name="idtipo_juego")
 	private Juego juego;
+
+	//bi-directional many-to-one association to Actividadcurso
+	@OneToMany(mappedBy="actividad")
+	private List<Actividadcurso> actividadcursos;
 
 	//bi-directional many-to-one association to Actividadusuario
 	@OneToMany(mappedBy="actividad")
@@ -105,12 +121,20 @@ public class Actividad implements Serializable {
 		this.publicado = publicado;
 	}
 
-	public String getUrlTextoEnseñanza() {
-		return this.urlTextoEnseñanza;
+	public String getUrl_texto_ensenanza() {
+		return this.url_texto_ensenanza;
 	}
 
-	public void setUrlTextoEnseñanza(String urlTextoEnseñanza) {
-		this.urlTextoEnseñanza = urlTextoEnseñanza;
+	public void setUrl_texto_ensenanza(String url_texto_ensenanza) {
+		this.url_texto_ensenanza = url_texto_ensenanza;
+	}
+
+	public List<Curso> getCursos() {
+		return this.cursos;
+	}
+
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
 	}
 
 	public Juego getJuego() {
@@ -119,6 +143,28 @@ public class Actividad implements Serializable {
 
 	public void setJuego(Juego juego) {
 		this.juego = juego;
+	}
+
+	public List<Actividadcurso> getActividadcursos() {
+		return this.actividadcursos;
+	}
+
+	public void setActividadcursos(List<Actividadcurso> actividadcursos) {
+		this.actividadcursos = actividadcursos;
+	}
+
+	public Actividadcurso addActividadcurso(Actividadcurso actividadcurso) {
+		getActividadcursos().add(actividadcurso);
+		actividadcurso.setActividad(this);
+
+		return actividadcurso;
+	}
+
+	public Actividadcurso removeActividadcurso(Actividadcurso actividadcurso) {
+		getActividadcursos().remove(actividadcurso);
+		actividadcurso.setActividad(null);
+
+		return actividadcurso;
 	}
 
 	public List<Actividadusuario> getActividadusuarios() {

@@ -3,6 +3,7 @@
 	<name>ingeniaEJBClient</name>
 	<comment></comment>
 	<projects>
+		<project>ingeniaComunes</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

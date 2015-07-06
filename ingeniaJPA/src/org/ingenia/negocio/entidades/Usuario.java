@@ -16,7 +16,6 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idusuario;
 
 	private String alias;
@@ -46,6 +45,10 @@ public class Usuario implements Serializable {
 	//bi-directional many-to-one association to Curso
 	@OneToMany(mappedBy="usuario")
 	private List<Curso> cursos;
+
+	//bi-directional many-to-one association to Estudiantecurso
+	@OneToMany(mappedBy="usuario")
+	private List<Estudiantecurso> estudiantecursos;
 
 	//bi-directional many-to-one association to Mensaje
 	@OneToMany(mappedBy="usuario1")
@@ -185,6 +188,28 @@ public class Usuario implements Serializable {
 		curso.setUsuario(null);
 
 		return curso;
+	}
+
+	public List<Estudiantecurso> getEstudiantecursos() {
+		return this.estudiantecursos;
+	}
+
+	public void setEstudiantecursos(List<Estudiantecurso> estudiantecursos) {
+		this.estudiantecursos = estudiantecursos;
+	}
+
+	public Estudiantecurso addEstudiantecurso(Estudiantecurso estudiantecurso) {
+		getEstudiantecursos().add(estudiantecurso);
+		estudiantecurso.setUsuario(this);
+
+		return estudiantecurso;
+	}
+
+	public Estudiantecurso removeEstudiantecurso(Estudiantecurso estudiantecurso) {
+		getEstudiantecursos().remove(estudiantecurso);
+		estudiantecurso.setUsuario(null);
+
+		return estudiantecurso;
 	}
 
 	public List<Mensaje> getMensajes1() {

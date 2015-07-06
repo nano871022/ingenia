@@ -2,6 +2,7 @@ package org.ingenia.negocio.entidades;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -13,10 +14,10 @@ import javax.persistence.*;
 public class Curso implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private CursoPK id;
+	@Id
+	private int idcurso;
 
-	private byte activo;
+	private int activo;
 
 	private String descripcion;
 
@@ -24,27 +25,39 @@ public class Curso implements Serializable {
 
 	private String nombre;
 
+	//bi-directional many-to-many association to Actividad
+	@ManyToMany(mappedBy="cursos")
+	private List<Actividad> actividads;
+
+	//bi-directional many-to-one association to Actividadcurso
+	@OneToMany(mappedBy="curso")
+	private List<Actividadcurso> actividadcursos;
+
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="idprofesor")
 	private Usuario usuario;
 
+	//bi-directional many-to-one association to Estudiantecurso
+	@OneToMany(mappedBy="curso")
+	private List<Estudiantecurso> estudiantecursos;
+
 	public Curso() {
 	}
 
-	public CursoPK getId() {
-		return this.id;
+	public int getIdcurso() {
+		return this.idcurso;
 	}
 
-	public void setId(CursoPK id) {
-		this.id = id;
+	public void setIdcurso(int idcurso) {
+		this.idcurso = idcurso;
 	}
 
-	public byte getActivo() {
+	public int getActivo() {
 		return this.activo;
 	}
 
-	public void setActivo(byte activo) {
+	public void setActivo(int activo) {
 		this.activo = activo;
 	}
 
@@ -72,12 +85,64 @@ public class Curso implements Serializable {
 		this.nombre = nombre;
 	}
 
+	public List<Actividad> getActividads() {
+		return this.actividads;
+	}
+
+	public void setActividads(List<Actividad> actividads) {
+		this.actividads = actividads;
+	}
+
+	public List<Actividadcurso> getActividadcursos() {
+		return this.actividadcursos;
+	}
+
+	public void setActividadcursos(List<Actividadcurso> actividadcursos) {
+		this.actividadcursos = actividadcursos;
+	}
+
+	public Actividadcurso addActividadcurso(Actividadcurso actividadcurso) {
+		getActividadcursos().add(actividadcurso);
+		actividadcurso.setCurso(this);
+
+		return actividadcurso;
+	}
+
+	public Actividadcurso removeActividadcurso(Actividadcurso actividadcurso) {
+		getActividadcursos().remove(actividadcurso);
+		actividadcurso.setCurso(null);
+
+		return actividadcurso;
+	}
+
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public List<Estudiantecurso> getEstudiantecursos() {
+		return this.estudiantecursos;
+	}
+
+	public void setEstudiantecursos(List<Estudiantecurso> estudiantecursos) {
+		this.estudiantecursos = estudiantecursos;
+	}
+
+	public Estudiantecurso addEstudiantecurso(Estudiantecurso estudiantecurso) {
+		getEstudiantecursos().add(estudiantecurso);
+		estudiantecurso.setCurso(this);
+
+		return estudiantecurso;
+	}
+
+	public Estudiantecurso removeEstudiantecurso(Estudiantecurso estudiantecurso) {
+		getEstudiantecursos().remove(estudiantecurso);
+		estudiantecurso.setCurso(null);
+
+		return estudiantecurso;
 	}
 
 }
