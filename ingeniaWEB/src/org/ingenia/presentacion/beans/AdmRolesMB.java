@@ -19,6 +19,7 @@ import org.ingenia.presentacion.BaseMB;
 public class AdmRolesMB extends BaseMB {
 
 	private static final long serialVersionUID = 5198983008576748399L;
+	
 	private String rol;
 	private List<RolVO> listaRoles;
 	private RolVO rolVO;
@@ -30,6 +31,7 @@ public class AdmRolesMB extends BaseMB {
 	IGestorUsuariosLocal gestorUsuarios;
 
 	public String buscar() {
+
 		RolVO rolVO = new RolVO();
 		rolVO.setNombre(rol);
 		listaRoles = gestorUsuarios.consultarRoles(rolVO);

@@ -9,44 +9,44 @@
 	</ui:define>
 
 	<ui:define name="content">
-			Administracion de Roles
+			Mis Cursos 
 		<h:form>
 
 			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel for="rol" value="Rol:" />
-				<p:inputText id="rol" value="#{AdmRolMB.rol}" required="false"
-					label="Rol" />
+				<h:outputLabel for="curso" value="Nombre Curso:" />
+				<p:inputText id="curso" value="#{AdmCursoMB.curso}" required="false"
+					label="curso" />
 
-				<f:facet name="footer">
-					<p:commandButton value="Buscar" action="#{AdmRolMB.buscar}" />
+				
+			<f:facet name="footer">
+					<p:commandButton value="Buscar" action="#{AdmCursoMB.buscar}" />
 				</f:facet>
-
 			</h:panelGrid>
+			
 		</h:form>
 
 		<h:form>
-			<p:dataTable var="rol" value="#{AdmRolMB.listaRoles}"
-				rendered="#{not empty AdmRolMB.listaRoles}" paginator="true"
+			<p:dataTable var="curso" value="#{AdmCursoMB.listaCursos}"
+				rendered="#{not empty AdmCursoMB.listaCursos}" paginator="true"
 				rows="10" dynamic="true">
 				<p:column headerText="Id">
-					<p:commandButton icon="ui-icon-search" value="#{rol.idRol}"
-						process="@this" action="#{AdmRolMB.irRol}">
-						<f:param name="id" value="#{rol.idRol}" />
+					<p:commandButton icon="ui-icon-search" value="#{curso.idcurso}"
+						process="@this" action="#{AdmCursoMB.irCurso}">
+						<f:param name="id" value="#{curso.idcurso}" />
 					</p:commandButton>
 				</p:column> 
 				
 				<p:column headerText="Nombre">
-					<h:outputText name="nombre" value="#{rol.nombre}" />
+					<h:outputText name="nombre" value="#{curso.nombre}" />
 				</p:column>
 
-				<p:column headerText="Nombre">
-					<h:outputText value="#{rol.descripcion}" />
+				<p:column headerText="Estado">
+					<h:outputText value="#{curso.estado}" />
 				</p:column>
 
 			</p:dataTable>
 
 			<p:link outcome="curso" value="Crear">
-				<f:param name="Id" value="10" />
 			</p:link>
 		</h:form>
 	</ui:define>

@@ -7,8 +7,10 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.ingenia.comunes.vo.RolVO;
 import org.ingenia.comunes.vo.UsuarioVO;
 import org.ingenia.comunes.excepcion.AdaptadorException;
 import org.ingenia.comunes.vo.CursoVO;
@@ -17,7 +19,7 @@ import org.ingenia.presentacion.BaseMB;
 import org.springframework.context.annotation.Scope;
 
 @ManagedBean(name = "AdmCursoMB")
-@Scope("session")
+@SessionScoped
 public class AdmCursoMB extends BaseMB {
 
 	private static final long serialVersionUID = 6956796593946333976L;
@@ -65,21 +67,21 @@ public class AdmCursoMB extends BaseMB {
 	        return destino;
 	    }
 	
-	public String buscar() {
-		CursoVO cursoVO = new CursoVO();
-		cursoVO.setNombre(this.curso);
-
+	public String buscar() {//es mas como un filtro
+		CursoVO CursoVO = new CursoVO();
+		CursoVO.setNombre(curso);
+		UsuarioVO profesorVO = new UsuarioVO();
+		profesorVO.setId(7890);
+		CursoVO.setProfesor(profesorVO);
+	
 		try {
-			listaCursos = gestorCursos.consultarCursosPorUsuario(0);
-		
-
+			listaCursos = gestorCursos.consultarCursosPorNombre(CursoVO);
 		} catch (AdaptadorException e) {
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e
-							.getMessage()));
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+			
+		
 		return NAV_IRADMCURSO;
 	}
 
@@ -111,6 +113,7 @@ public class AdmCursoMB extends BaseMB {
 
 		CursoVO cursoVO = this.cursoVO;
 		UsuarioVO profesorVO = new UsuarioVO();
+
 		try {
 			profesorVO.setId(123456);
 			cursoVO.setProfesor(profesorVO);
@@ -144,7 +147,7 @@ public class AdmCursoMB extends BaseMB {
 		String id = params.get("id");
 		CursoVO cursoVO = new CursoVO();
 		cursoVO.setIdcurso(Integer.parseInt(id));
-		//this.cursoVO=cursoVO;
+
 		try {
 			this.cursoVO = gestorCursos.consultarCursoVO(cursoVO);
             
@@ -173,11 +176,12 @@ public class AdmCursoMB extends BaseMB {
 	}
 
 	public List<CursoVO> getListaCursos() {
-	
+
+	//cuanod autentica el profesor se habilita la carga automatica
 		  if (listaCursos == null) {
 			  try {
 
-				listaCursos = gestorCursos.consultarTodosCursos();
+				listaCursos = gestorCursos.consultarCursosProfesor(7890);
 			} catch (AdaptadorException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -191,5 +195,6 @@ public class AdmCursoMB extends BaseMB {
 	public void setListaCursos(List<CursoVO> listaCursos) {
 		this.listaCursos = listaCursos;
 	}
+
 
 }

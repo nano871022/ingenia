@@ -6,13 +6,14 @@ import javax.ejb.Remote;
 
 import org.ingenia.comunes.excepcion.AdaptadorException;
 import org.ingenia.comunes.vo.CursoVO;
+import org.ingenia.comunes.vo.UsuarioVO;
 
 @Remote
 public interface IGestorCursosRemote {
 
-	public List<CursoVO> consultarTodosCursos() throws AdaptadorException;
+	public List<CursoVO> consultarCursosProfesor(int idprofesor) throws AdaptadorException;
 
-	public List<CursoVO> consultarCursosPorUsuario(int idUsuario)
+	public List<CursoVO> consultarCursosPorNombre(CursoVO cursoVO)
 			throws AdaptadorException;
 
 	public CursoVO consultarCursoVO(CursoVO cursoVO) throws AdaptadorException;

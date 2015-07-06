@@ -34,6 +34,7 @@ public class AdaptadorCurso extends IAdaptadorCurso {
 		curso.setNombre(cursoVO.getNombre());
 		curso.setEstado(cursoVO.getEstado());
 		curso.setDescripcion(cursoVO.getDescripcion());
+		curso.setActivo(cursoVO.getActivo());
 		return curso;
 	}
 
@@ -52,6 +53,7 @@ public class AdaptadorCurso extends IAdaptadorCurso {
 		cursoVO.setDescripcion(curso.getDescripcion());
 		  AdaptadorUsuario adaptador = new AdaptadorUsuario(curso.getUsuario());
 		cursoVO.setProfesor(adaptador.getUsuarioVO());
+		cursoVO.setActivo(curso.getActivo());
 		
 		/*if (curso.getCursoEstudiantes() != null) {
 			listaEstudiantes = new ArrayList<EstudianteVO>();
